@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: controller-private
+  namespace: <aap-namespace> # Make sure this is your correct namespace
+  annotations:
+    haproxy.router.openshift.io/ip_whitelist: "172.0.0.0/24" # Your working CIDR
+spec:
+  host: private-controller.apps.openshift.example.com # Your unique private hostname
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: <controller-service-name> # Add your service name for Controller here. 
+    weight: 100
+  wildcardPolicy: None
