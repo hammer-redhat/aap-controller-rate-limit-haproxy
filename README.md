@@ -1,6 +1,13 @@
 # OpenShift Routes for AAP Controller Service
 
-This repository contains the OpenShift Route definitions for the `controller-service` in the `aap` namespace.
+This repository contains the OpenShift Route definitions for the `controller-service` in the `aap` namespace. These OpenShift Route configurations provide external access to the AAP Controller Service, with options for both restricted private access and rate-limited public access. 
+
+## Pre-reqs
+
+- OpenShift CLI (oc) installed and configured.
+- Ensure you are logged into your OpenShift cluster and have selected the correct project/namespace for (aap)" 
+- Access to the aap namespace (or whatever namespace will be used).
+- The AAP 2.4 controller-service already deployed and running in the desired namespace.
 
 ## Routes
 
