@@ -14,7 +14,6 @@ This repository contains the OpenShift Route definitions for the `controller-ser
 1.  **`controller-private-route.yaml`**:
     * Hostname: `private-controller.apps.openshift.example.com`
     * Purpose: Provides access to the service for whitelisted IPs only (`172.0.0.0/24`).
-    * Rate Limiting: Configured with minimal or very generous rate limits (adjust as needed).
 
 2.  **`controller-public-route.yaml`**:
     * Hostname: `public-controller.apps.openshift.example.com`
