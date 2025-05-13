@@ -22,3 +22,33 @@ To apply the routes:
 ```
 oc apply -f controller-private-route.yml controller-public-route.yml -n <namespace_for_aap>
 ```
+
+## Testing the Routes
+
+Run the curl command below from the whitelisted IP or CIDR that's specified in **`controller-private-route.yaml`**.
+```
+# You'll see 200 returned for successful attempts
+$ for i in $(seq 1 10); do  curl -s -o /dev/null -w "%{http_code}\n" https://private-controller.apps.openshift.example.com/api/v2/ping/; done
+200
+200
+200
+```
+
+Run the curl command below to test the public route and test rate limiting behavior from the public route created by **`controller-public-route.yaml`**.
+```
+$ for i in $(seq 1 15); do  curl -s -o /dev/null -w "%{http_code}\n" https://public-controller.apps.openshift.example.com/api/v2/ping/; done
+200
+200
+200
+200
+200
+200
+200
+200
+200
+200
+000  # Rate limit kicks in
+000
+000
+000
+```
